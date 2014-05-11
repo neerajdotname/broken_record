@@ -18,9 +18,13 @@ module BrokenRecord
       total_errors = 0
       test_results.each { |result| total_errors += result[:error_count] }
       if total_errors == 0
-        puts "\nAll models validated successfully.".green
+        msg = "All models validated successfully."
+        Rails.logger.info msg
+        puts "\n#{msg}".green
       else
-        puts "\n#{total_errors} errors were found while running validations.".red
+        msg = "#{total_errors} errors were found while running validations."
+        Rails.logger.info msg
+        puts "\n#{msg}".red
         exit 1
       end
     end
